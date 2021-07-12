@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "60eb68ad6f14da69657d7382"
+  },
+  "User_Id": "Owner",
+  "User_Name": "Owner",
+  "Role_Code": 1,
+  "Role": "Owner"
+},{
+  "_id": {
+    "$oid": "60eb6dee6f14da69657d739e"
+  },
+  "User_Id": "Manager",
+  "User_Name": "Manager",
+  "Role_Code": 2,
+  "Role": "Manager"
+},{
+  "_id": {
+    "$oid": "60eb6dfb6f14da69657d739f"
+  },
+  "User_Id": "Officer",
+  "User_Name": "Officer",
+  "Role_Code": 3,
+  "Role": "Officer"
+},{
+  "_id": {
+    "$oid": "60eb6e086f14da69657d73a0"
+  },
+  "User_Id": "Worker",
+  "User_Name": "Worker",
+  "Role_Code": 4,
+  "Role": "Worker"
+},{
+  "_id": {
+    "$oid": "60eafb50640a3335d0d85af1"
+  },
+  "User_Id": "User",
+  "User_Name": "User",
+  "Role_Code": 5,
+  "Role": "User"
+}]

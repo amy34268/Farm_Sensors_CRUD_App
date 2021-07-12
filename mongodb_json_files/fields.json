@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "60eb69433b13670430863162"
+  },
+  "Field_Id": 1,
+  "Sensor_Id": 2,
+  "Sensor_Name": "sensor",
+  "Sensor_location": {
+    "lon": "123",
+    "lat": "123"
+  }
+},{
+  "_id": {
+    "$oid": "60ec3dba6f14da69657d73ac"
+  },
+  "Field_Id": 2,
+  "Sensor_Id": 1,
+  "Sensor_Name": "sensor",
+  "Sensor_location": {
+    "lon": "123",
+    "lat": "123"
+  }
+},{
+  "_id": {
+    "$oid": "60ec3dd26f14da69657d73ad"
+  },
+  "Field_Id": 2,
+  "Sensor_Id": 2,
+  "Sensor_Name": "sensor",
+  "Sensor_location": {
+    "lon": "123",
+    "lat": "123"
+  }
+},{
+  "_id": {
+    "$oid": "60ec3dd96f14da69657d73ae"
+  },
+  "Field_Id": 2,
+  "Sensor_Id": 3,
+  "Sensor_Name": "sensor",
+  "Sensor_location": {
+    "lon": "123",
+    "lat": "123"
+  }
+},{
+  "_id": {
+    "$oid": "60ec3de46f14da69657d73af"
+  },
+  "Field_Id": 3,
+  "Sensor_Id": 1,
+  "Sensor_Name": "sensor",
+  "Sensor_location": {
+    "lon": "123",
+    "lat": "123"
+  }
+},{
+  "_id": {
+    "$oid": "60ec4a00b689b21b1ca11dad"
+  },
+  "Field_Id": 1,
+  "Sensor_Id": 1,
+  "Sensor_Name": "123123",
+  "Sensor_location": {
+    "lon": "123",
+    "lat": "123"
+  }
+}]

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lite Farm</title>
+</head>
+
+<body>
+  <h1> Lite Farm by Amy Lee </h1>
+
+  <h2 style="height:55px;">
+        <div>
+            <label for="ueerId">User Name </label>
+            <input type="text" placeholder="User Name" id="userId">
+            <br>
+            <label for="fieldId">Field Id </label>
+            <input type="number" placeholder="Field Id" id="fieldId">
+            <button onclick="find_field()"> Find sensors for a field</button>
+        </div>  
+        <br>
+        <div >
+            <label for="sensorId">Sensor Id </label>
+            <input type="number" placeholder="Sensor Id" id="sensorId">
+            <button onclick="find_sensor()"> Find a sensor</button>
+            <button onclick="delete_sensor()">Delete a sensor</button>
+        </div>
+        <br>
+        <div >
+                <div>
+                    <label for="sensorName" >Sensor Name </label> 
+                    <input type="text" placeholder="Sensor Name" id="sensorName">
+                </div>
+                <br>
+                <div>
+                    <label for="lon">longitude </label>
+                    <input type="number" placeholder="longitude" id="lon">
+                </div>
+                <br>
+                <div>
+                    <label for="lat">latitude </label>
+                    <input type="number" placeholder="latitude" id="lat">
+                    <button onclick="add_sensor()">Add a sensor</button>
+                    <button onclick="update_sensor()">Update a sensor</button>
+                </div>
+        </div >
+
+
+       <div >
+            <p id="result">  </p>
+        
+       </div>
+
+    </h2>    
+
+  <script>
+
+            function find_field(){
+
+                const resultElement = document.querySelector('#result')
+                let data 
+
+                fetch("http://localhost:8080"  + "/field/" + fieldId.value , {method: 'GET'} )
+                .then( res =>  res.json()  )        // convert response string to JSON object  
+                .then( json => { 
+                                data = json ; 
+                                
+                                if (typeof data === 'string' ){
+                                           resultElement.innerText = "Not found"
+                                } else {  
+                                           resultElement.innerText = JSON.stringify(data)          
+                                }
+                }) 
+            }
+
+
+
+            function find_sensor(){
+
+                const resultElement = document.querySelector('#result')
+                let data 
+
+                fetch("http://localhost:8080" + "/field/" + fieldId.value + "/sensor/" + sensorId.value , {method: 'GET'})
+                .then( res =>  res.json()  )        // convert response string to JSON object  
+                .then( json => { 
+                                data = json ; 
+                                
+                                if (typeof data === 'string' ){
+                                           resultElement.innerText = "Not found"
+                                } else {  
+                                           resultElement.innerText = JSON.stringify(data)           
+                                }
+                }) 
+            }
+
+            
+            function add_sensor(){
+
+                let response
+                const resultElement = document.querySelector('#result')
+                let data = {        
+                    fieldId: fieldId.value,
+                    sensorId: sensorId.value,
+                    sensorName: sensorName.value,
+                    lon: lon.value,
+                    lat: lat.value
+                }
+
+                let options = { 
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify( data )
+                    }
+
+             // fetch("http://localhost:8080/user/" + userId.value + "/field", options );
+                fetch("http://localhost:8080/user/" + userId.value + "/field/" + fieldId.value + "/sensor/" + sensorId.value , options )
+                .then( res => { response = res ;
+                                let status = response.status
+                                console.log( response )
+                                if (status === 201 ){
+                                    resultElement.innerText = "Added successfully" 
+                                } else {  
+                                    if (status === 403){
+                                        resultElement.innerText = "=> Not authroized to add !"
+                                    } else {  // 304
+                                        resultElement.innerText = "=> This sensor already exists !"
+                                    }
+                                }
+                }) 
+            }
+
+
+            function update_sensor(){
+                
+                let status
+                const resultElement = document.querySelector('#result')
+
+                let data = {        
+                    fieldId: fieldId.value,
+                    sensorId: sensorId.value,
+                    sensorName: sensorName.value,
+                    lon: lon.value,
+                    lat: lat.value
+                }
+
+                let options = { 
+                    method: 'PATCH',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify( data )
+                    }
+
+                fetch("http://localhost:8080/user/" + userId.value + "/field/" + fieldId.value + "/sensor/" + sensorId.value , options )
+                .then( res =>  res.status )        
+                .then( res_status => { 
+                                status = res_status ; 
+                                
+                                if (status === 200 ){
+                                    resultElement.innerText = "Updated successfully" 
+                                } else {  // 403
+                                    resultElement.innerText = "updating failed ! Not authroized to update "
+                                }
+                }) 
+            }
+
+
+            function delete_sensor(){
+
+                const resultElement = document.querySelector('#result')
+                
+                let options = { 
+                    method: 'DELETE',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, 
+                    // body: JSON.stringify( data )
+                    }
+
+                fetch("http://localhost:8080/user/" + userId.value + "/field/" + fieldId.value + "/sensor/" + sensorId.value , options )
+                .then( res =>  res.status )        
+                .then( status => { 
+                                console.log('status',status)
+                                if (status === 200 ){
+                                    console.log('status===200',status)
+                                    resultElement.innerText = "Deleted successfully" 
+                                } else {  
+                                    console.log('status !== 200',status)
+                                    resultElement.innerText = "deleting failed ! Not  authroized to delete "
+                                }
+                }) 
+            }
+  </script>
+
+</body>
+</html>
+
+
+<style>
+    input, button {
+        height: 28px; 
+        margin: 2px;
+        padding: 2px; 
+        background-color: honeydew ;
+        
+    }
+    button {
+        height: 40px; 
+        background-color: yellowgreen ;
+        border-radius: 10%;
+        font: 50px;
+    }
+
+</style>
