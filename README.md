@@ -1,7 +1,10 @@
 ﻿# LiteFarm_Sensors
  To run the application: 
+ <br>
  npm install
+ <br>
  npm start
+ <br>
  
 Side Note: 
 1. The ConnectionString(DB_HOST) in server.js would need to be replaced with your connectionString in MongoDB, with database name "litefarm", collections as "fields" and "users". The sample documents(JSON) of fields and users that I've created are included in the folder "mongodb_json_files". 
